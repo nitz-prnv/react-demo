@@ -89,7 +89,7 @@ function App() {
   `;
   const Popup = styled.div`
     position: absolute;
-    bottom: 100px;
+    bottom: 50px;
     left: 20px;
     box-shadow: 10px 10px 8px 10px #888888;
     display: flex;
@@ -98,7 +98,7 @@ function App() {
     align-items: center;
     background: white;
     width: 100px;
-    height: 100px;
+    height: 140px;
     cursor: pointer;
     z-index: 2;
   `;
