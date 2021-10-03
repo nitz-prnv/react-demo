@@ -1,7 +1,7 @@
 import React from "react";
 import moment from "moment";
-import { Picker } from "emoji-mart";
 import styled from "styled-components";
+
 function App() {
   const AppContainer = styled.div`
     display: grid;
@@ -56,6 +56,7 @@ function App() {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    align-items:flex-end;
     bottom: 0;
     border: 2px solid black;
     width: 72%;
@@ -74,9 +75,11 @@ function App() {
   `;
 
   const Attachment = styled.div`
-  background:white;
-    width: 30px;
-    height: 30px;
+  position:relative;
+  bottom:0;
+    background:white;
+    width: 25px;
+    height: 25px;
     content: url("https://cdn2.iconfinder.com/data/icons/bold-application/500/plus-512.png");
     border: 1px solid black;
     border-radius: 50%;
