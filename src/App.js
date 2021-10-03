@@ -1,6 +1,6 @@
 import React from "react";
 import moment from "moment";
-import { Picker } from 'emoji-mart'
+import { Picker } from "emoji-mart";
 import styled from "styled-components";
 function App() {
   const AppContainer = styled.div`
@@ -47,54 +47,54 @@ function App() {
     grid-row-start: 2;
     background: #ffff;
     border-radius: 3px;
-    
-    
   `;
-const InputContainer = styled.form `
-position: absolute;
-display:flex;
-flex-direction:row;
-justify-content:space-around;
-bottom:0;
-border:2px solid black;
-width: 72%;
-`
+  const InputContainer = styled.form`
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    bottom: 0;
+    border: 2px solid black;
+    width: 72%;
+  `;
   const TextInput = styled.input`
-    position:relative;
+    position: relative;
     padding: 0 0 80px 0;
-    width:100%;
-    height:100%;
+    width: 100%;
+    height: 100%;
     font-size: inherit;
-    line-height:10px;
+    line-height: 10px;
     border: 0;
     &:focus {
       outline: none;
     }
   `;
 
-  const Attachment = styled.div `
-  width:50px;
-  height:50px;
+  const Attachment = styled.div`
+    width: 50px;
+    height: 50px;
     content: url("https://cdn2.iconfinder.com/data/icons/bold-application/500/plus-512.png");
-    border: 1px solid black ;
-    border-radius:50%;
-  color:blue;
-  margin:10px;
-  `
-  const Popup = styled.div `
-  position:absolute;
-  bottom:100px;
-  left:20px;
-  box-shadow: 10px 10px 8px 10px #888888;
-display:flex;
-flex-direction:column;
-justify-content:space-around;
-align-items:center;
-background: white;
-  width:100px;
-  height:100px;
-  z-index:2;
-  `
+    border: 1px solid black;
+    border-radius: 50%;
+    color: blue;
+    margin: 10px;
+    cursor: pointer;
+  `;
+  const Popup = styled.div`
+    position: absolute;
+    bottom: 100px;
+    left: 20px;
+    box-shadow: 10px 10px 8px 10px #888888;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background: white;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    z-index: 2;
+  `;
   const ListTop = styled.div`
     grid-column-start: 2;
     background: #ffff;
@@ -134,7 +134,7 @@ background: white;
     grid-template-columns: 75px 80%;
     grid-template-rows: 50% 50%;
     gap: 0px 20px;
-    height:80px;
+    height: 80px;
     margin: 10px;
   `;
   const Name = styled.div`
@@ -142,7 +142,6 @@ background: white;
     grid-column-start: 2;
     font-size: 18px;
     font-weight: 600;
-    
   `;
   const Pic = styled.div`
     grid-column-start: 1;
@@ -165,25 +164,29 @@ background: white;
   const Groups = [
     { name: "test group", content: "This is the last message ..." },
   ];
-  const[toggle,SetToggle]= React.useState(false)
+  const [toggle, SetToggle] = React.useState(false);
   const [active, SetActive] = React.useState(tabs[0]);
   const [messages, SetMessages] = React.useState([
     {
       name: "aravindmv97",
       content:
         "Been here 2 weeks and WOW. Amazing team. I had the best 2 weeks in profits all year long. You guys are awesome. Thanks for your hard work and helping us to make money and learn each day. Leeesss Gggoooo",
-      time:'20:09'
-      },
+      time: "20:09",
+    },
   ]);
-  const OnSend =(e)=>{
-    e.preventDefault()
-    console.log(messages)
-    SetMessages([...messages,{name:'you',content:e.target.childNodes[1].value,
-    time:moment().format("HH:mm") 
-  }]
-  )
+  const OnSend = (e) => {
+    e.preventDefault();
+    console.log(messages);
+    SetMessages([
+      ...messages,
+      {
+        name: "you",
+        content: e.target.childNodes[1].value,
+        time: moment().format("HH:mm"),
+      },
+    ]);
     // console.log(messages)
-  }
+  };
 
   return (
     <AppContainer>
@@ -230,25 +233,35 @@ background: white;
           return (
             <Text>
               <Pic />
-              <Name>{index.name}<div style={{fontSize:'12px',fontWeight:100}}>{index.time}</div></Name> 
+              <Name>
+                {index.name}
+                <div style={{ fontSize: "12px", fontWeight: 100 }}>
+                  {index.time}
+                </div>
+              </Name>
               <Content>{index.content}</Content>
             </Text>
           );
         })}
         <InputContainer onSubmit={OnSend}>
-        {
-          toggle && <Popup> 
-          <div>image</div>
-          <div>audio</div>
-          <div>file</div>
-          </Popup>
-        }
-        <Attachment  onClick={()=>{SetToggle(!toggle)}}> hey</Attachment>
-        <TextInput/>
-      </InputContainer>
-      
+          {toggle && (
+            <Popup>
+              <div>image</div>
+              <div>audio</div>
+              <div>file</div>
+            </Popup>
+          )}
+          <Attachment
+            onClick={() => {
+              SetToggle(!toggle);
+            }}
+          >
+            {" "}
+            hey
+          </Attachment>
+          <TextInput />
+        </InputContainer>
       </Chat>
-
     </AppContainer>
   );
 }
