@@ -47,8 +47,11 @@ function App() {
     grid-row-start: 2;
     background: #ffff;
     border-radius: 3px;
+    overflow-y:scroll;
+    height:85%;
   `;
   const InputContainer = styled.form`
+    background:white;
     position: absolute;
     display: flex;
     flex-direction: row;
@@ -71,8 +74,9 @@ function App() {
   `;
 
   const Attachment = styled.div`
-    width: 50px;
-    height: 50px;
+  background:white;
+    width: 30px;
+    height: 30px;
     content: url("https://cdn2.iconfinder.com/data/icons/bold-application/500/plus-512.png");
     border: 1px solid black;
     border-radius: 50%;
@@ -259,7 +263,7 @@ function App() {
             {" "}
             hey
           </Attachment>
-          <TextInput />
+          <TextInput  placeholder="Enter Your Text here"/>
         </InputContainer>
       </Chat>
     </AppContainer>
