@@ -3,165 +3,6 @@ import moment from "moment";
 import styled from "styled-components";
 
 function App() {
-  const AppContainer = styled.div`
-    display: grid;
-    overflow: hidden;
-    background-color: #eaeaea;
-    grid-template-columns: 5% 22% 73%;
-    grid-template-rows: 10% 90%;
-    gap: 4px 4px;
-    height: 100vh;
-    font-size: 14px;
-    font-weight: 300;
-    padding: 1px;
-    font-family: "Lato", sans-serif;
-  `;
-  const LogoPanel = styled.div`
-    grid-row-start: 1;
-    grid-row-end: 3;
-    background: #ffff;
-    border-radius: 3px;
-  `;
-  const Logo = styled.div`
-    display: block;
-    margin: auto;
-    margin-top: 10px;
-    border-radius: 10px;
-    width: 60px;
-    height: 60px;
-    content: url("https://i.pinimg.com/564x/f7/d7/bc/f7d7bc7d5659028d268eab0d88818d7c.jpg");
-  `;
-  const ChatTop = styled.div`
-    grid-column-start: 3;
-    display: grid;
-    grid-template-columns: 80px 80%;
-    gap: 0px 18px;
-    grid-template-rows: 50% 50%;
-    background: #ffff;
-    border-radius: 3px;
-    height: 100%;
-    line-height: 30px;
-  `;
-  const Chat = styled.div`
-    grid-column-start: 3;
-    grid-row-start: 2;
-    background: #ffff;
-    border-radius: 3px;
-    overflow-y:scroll;
-    height:85%;
-  `;
-  const InputContainer = styled.form`
-    background:white;
-    position: absolute;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items:flex-end;
-    bottom: 0;
-    border: 2px solid black;
-    width: 72%;
-  `;
-  const TextInput = styled.input`
-    position: relative;
-    padding: 0 0 80px 0;
-    width: 100%;
-    height: 100%;
-    font-size: inherit;
-    line-height: 10px;
-    border: 0;
-    &:focus {
-      outline: none;
-    }
-  `;
-
-  const Attachment = styled.div`
-  position:relative;
-  bottom:0;
-    background:white;
-    width: 25px;
-    height: 25px;
-    content: url("https://cdn2.iconfinder.com/data/icons/bold-application/500/plus-512.png");
-    border: 1px solid black;
-    border-radius: 50%;
-    color: blue;
-    margin: 10px;
-    cursor: pointer;
-  `;
-  const Popup = styled.div`
-    position: absolute;
-    bottom: 50px;
-    left: 20px;
-    box-shadow: 10px 10px 8px 10px #888888;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    background: white;
-    width: 100px;
-    height: 140px;
-    cursor: pointer;
-    z-index: 2;
-  `;
-  const ListTop = styled.div`
-    grid-column-start: 2;
-    background: #ffff;
-    border-radius: 3px;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-  `;
-  const Tab = styled.div`
-    cursor: pointer;
-    font-size: 20px;
-    ${({ active }) =>
-      active &&
-      `
-    color: #2C3ED2;
-    border-bottom: 3px solid #2C3ED2;
-    border-top-left-radius:-10px
-  `}
-  `;
-  const List = styled.div`
-    grid-column-start: 2;
-    grid-row-start: 2;
-    background: #ffff;
-    border-radius: 3px;
-  `;
-  const Details = styled.div`
-    display: grid;
-    grid-template-columns: 75px 80%;
-    grid-template-rows: 50% 50%;
-    gap: 0px 20px;
-    height: 10%;
-    margin-top: 20px;
-    margin-left: 10px;
-  `;
-  const Text = styled.div`
-    display: grid;
-    grid-template-columns: 75px 80%;
-    grid-template-rows: 50% 50%;
-    gap: 0px 20px;
-    height: 80px;
-    margin: 10px;
-  `;
-  const Name = styled.div`
-    grid-row-start: 1;
-    grid-column-start: 2;
-    font-size: 18px;
-    font-weight: 600;
-  `;
-  const Pic = styled.div`
-    grid-column-start: 1;
-    grid-row-start: 1;
-    grid-row-end: 3;
-    background: #eaeaea;
-    border-radius: 20px;
-    margin: 2px;
-  `;
-  const Content = styled.div`
-    grid-column-start: 2;
-    grid-row-start: 2;
-  `;
   const tabs = ["Direct", "Groups"];
   const Direct = [
     { name: "aravindmv97", content: "This is the last message ..." },
@@ -173,6 +14,7 @@ function App() {
   ];
   const [toggle, SetToggle] = React.useState(false);
   const [active, SetActive] = React.useState(tabs[0]);
+  const [text, setText] = React.useState("");
   const [messages, SetMessages] = React.useState([
     {
       name: "aravindmv97",
@@ -188,11 +30,11 @@ function App() {
       ...messages,
       {
         name: "you",
-        content: e.target.childNodes[1].value,
+        content: text,
         time: moment().format("HH:mm"),
       },
     ]);
-    // console.log(messages)
+  setText('')
   };
 
   return (
@@ -262,11 +104,14 @@ function App() {
             onClick={() => {
               SetToggle(!toggle);
             }}
-          >
-            {" "}
-            hey
-          </Attachment>
-          <TextInput  placeholder="Enter Your Text here"/>
+          ></Attachment>
+          <TextInput
+            value={text}
+            onChange={(e) => {
+              setText(e.target.value);
+            }}
+            placeholder="Enter Your Text here"
+          />
         </InputContainer>
       </Chat>
     </AppContainer>
@@ -274,3 +119,162 @@ function App() {
 }
 
 export default App;
+const AppContainer = styled.div`
+  display: grid;
+  overflow: hidden;
+  background-color: #eaeaea;
+  grid-template-columns: 5% 22% 73%;
+  grid-template-rows: 10% 90%;
+  gap: 4px 4px;
+  height: 100vh;
+  font-size: 14px;
+  font-weight: 300;
+  padding: 1px;
+  font-family: "Lato", sans-serif;
+`;
+const LogoPanel = styled.div`
+  grid-row-start: 1;
+  grid-row-end: 3;
+  background: #ffff;
+  border-radius: 3px;
+`;
+const Logo = styled.div`
+  display: block;
+  margin: auto;
+  margin-top: 10px;
+  border-radius: 10px;
+  width: 60px;
+  height: 60px;
+  content: url("https://i.pinimg.com/564x/f7/d7/bc/f7d7bc7d5659028d268eab0d88818d7c.jpg");
+`;
+const ChatTop = styled.div`
+  grid-column-start: 3;
+  display: grid;
+  grid-template-columns: 80px 80%;
+  gap: 0px 18px;
+  grid-template-rows: 50% 50%;
+  background: #ffff;
+  border-radius: 3px;
+  height: 100%;
+  line-height: 30px;
+`;
+const Chat = styled.div`
+  grid-column-start: 3;
+  grid-row-start: 2;
+  background: #ffff;
+  border-radius: 3px;
+  overflow-y: scroll;
+  height: 85%;
+`;
+const InputContainer = styled.form`
+  background: white;
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: flex-end;
+  bottom: 0;
+  border: 2px solid black;
+  width: 72%;
+`;
+const TextInput = styled.input`
+  position: relative;
+  padding: 0 0 80px 0;
+  width: 100%;
+  height: 100%;
+  font-size: inherit;
+  line-height: 10px;
+  border: 0;
+  &:focus {
+    outline: none;
+  }
+`;
+
+const Attachment = styled.div`
+  position: relative;
+  bottom: 0;
+  background: white;
+  width: 25px;
+  height: 25px;
+  content: url("https://cdn2.iconfinder.com/data/icons/bold-application/500/plus-512.png");
+  border: 1px solid black;
+  border-radius: 50%;
+  color: blue;
+  margin: 10px;
+  cursor: pointer;
+`;
+const Popup = styled.div`
+  position: absolute;
+  bottom: 50px;
+  left: 20px;
+  box-shadow: 10px 10px 8px 10px #888888;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background: white;
+  width: 100px;
+  height: 140px;
+  cursor: pointer;
+  z-index: 2;
+`;
+const ListTop = styled.div`
+  grid-column-start: 2;
+  background: #ffff;
+  border-radius: 3px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+`;
+const Tab = styled.div`
+  cursor: pointer;
+  font-size: 20px;
+  ${({ active }) =>
+    active &&
+    `
+color: #2C3ED2;
+border-bottom: 3px solid #2C3ED2;
+border-top-left-radius:-10px
+`}
+`;
+const List = styled.div`
+  grid-column-start: 2;
+  grid-row-start: 2;
+  background: #ffff;
+  border-radius: 3px;
+`;
+const Details = styled.div`
+  display: grid;
+  grid-template-columns: 75px 80%;
+  grid-template-rows: 50% 50%;
+  gap: 0px 20px;
+  height: 10%;
+  margin-top: 20px;
+  margin-left: 10px;
+`;
+const Text = styled.div`
+  display: grid;
+  grid-template-columns: 75px 80%;
+  grid-template-rows: 50% 50%;
+  gap: 0px 20px;
+  height: 80px;
+  margin: 10px;
+`;
+const Name = styled.div`
+  grid-row-start: 1;
+  grid-column-start: 2;
+  font-size: 18px;
+  font-weight: 600;
+`;
+const Pic = styled.div`
+  grid-column-start: 1;
+  grid-row-start: 1;
+  grid-row-end: 3;
+  background: #eaeaea;
+  border-radius: 20px;
+  margin: 2px;
+`;
+const Content = styled.div`
+  grid-column-start: 2;
+  grid-row-start: 2;
+`;
